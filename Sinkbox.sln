@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sinkbox", "Sinkbox\Sinkbox.csproj", "{7A8F9573-DCBA-4BBC-ACAD-F6437B900ACD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sinkbox.Tests", "Sinkbox.Tests\Sinkbox.Tests.csproj", "{1365B35E-5399-42D2-8448-B91C4FAE43CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{7A8F9573-DCBA-4BBC-ACAD-F6437B900ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A8F9573-DCBA-4BBC-ACAD-F6437B900ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A8F9573-DCBA-4BBC-ACAD-F6437B900ACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1365B35E-5399-42D2-8448-B91C4FAE43CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1365B35E-5399-42D2-8448-B91C4FAE43CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1365B35E-5399-42D2-8448-B91C4FAE43CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1365B35E-5399-42D2-8448-B91C4FAE43CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

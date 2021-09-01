@@ -18,7 +18,7 @@ namespace Sinkbox
 			public EnumStrAttribute(string str) => this.str = str;
 		}
 
-		public static string GetEnumStr<T>(T item) where T : Enum
+		public static string EnumStr<T>(this T item) where T : Enum
 		{
 			var type = item.GetType();
 			if (!type.IsEnum) throw new ArgumentException("item must be of Enum type", nameof(item));
@@ -40,6 +40,6 @@ namespace Sinkbox
 		}
 
 		public static T? GetByStr<T>(string itemName) where T : Enum
-			=> All<T>().FirstOrDefault(enumValue => GetEnumStr(enumValue) == itemName);
+			=> All<T>().FirstOrDefault(enumValue => EnumStr(enumValue) == itemName);
 	}
 }
