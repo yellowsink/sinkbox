@@ -13,8 +13,8 @@ namespace Sinkbox.Tests
 			for (var i = 0; i < 10000; i++)
 			{
 				var inValue        = rand.Next(10000);
-				var actualResult   = func(inValue);
-				var memoized       = ((Func<int, double>) func).Memoize<double>();
+				var actualResult   = Func(inValue);
+				var memoized       = ((Func<int, double>) Func).Memoize<double>();
 				var memoizedFirst  = memoized(new object[] { inValue });
 				var memoizedSecond = memoized(new object[] { inValue });
 				
@@ -22,7 +22,7 @@ namespace Sinkbox.Tests
 				Assert.AreEqual(actualResult, memoizedSecond);
 			}
 
-			double func(int @in) => Math.Pow(@in, 5);
+			double Func(int @in) => Math.Pow(@in, 5);
 		}
 	}
 }

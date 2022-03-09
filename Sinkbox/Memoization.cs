@@ -22,7 +22,10 @@ namespace Sinkbox
 			return result;
 		}
 
+		public static Action<object[]> Memoize(this Delegate func)
+			=> args => MemoizedCall(func, args);
+		
 		public static Func<object[], T> Memoize<T>(this Delegate func)
-			=> (parameters) => (T) MemoizedCall(func, parameters)!;
+			=> args => (T) MemoizedCall(func, args)!;
 	}
 }

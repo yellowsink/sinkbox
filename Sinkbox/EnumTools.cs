@@ -6,16 +6,13 @@ namespace Sinkbox
 	public static class EnumTools
 	{
 		public static T[] All<T>() where T : Enum
-			=> typeof(T).GetEnumValues()
-						.Cast<T>()
-						//.Select(o => (T) o)
-						.ToArray();
+			=> typeof(T).GetEnumValues().Cast<T>().ToArray();
 
 		[AttributeUsage(AttributeTargets.Field)]
 		public class EnumStrAttribute : Attribute
 		{
-			public string str;
-			public EnumStrAttribute(string str) => this.str = str;
+			public readonly string Str;
+			public EnumStrAttribute(string str) => Str = str;
 		}
 
 		public static string EnumStr<T>(this T item) where T : Enum
@@ -25,14 +22,14 @@ namespace Sinkbox
 
 			//Tries to find a DescriptionAttribute for a potential friendly name
 			//for the enum
-			var memberInfo = type.GetMember(item.ToString()!);
+			var memberInfo = type.GetMember(item.ToString());
 			if (memberInfo.Length > 0)
 			{
 				var attrs = memberInfo[0].GetCustomAttributes(typeof(EnumStrAttribute), false);
 
 				if (attrs.Length > 0)
 					//Pull out the description value
-					return ((EnumStrAttribute) attrs[0]).str;
+					return ((EnumStrAttribute) attrs[0]).Str;
 			}
 
 			//If we have no attribute, just return the ToString of the enum

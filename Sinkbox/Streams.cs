@@ -8,8 +8,8 @@ namespace Sinkbox
 {
 	public static class Streams
 	{
-		public static Stream Create(string obj) => new MemoryStream(Encoding.Default.GetBytes(obj));
-		public static Stream Create(bool   obj) => new MemoryStream(BitConverter.GetBytes(obj));
+		public static Stream Create(string obj, Encoding? enc = null) => new MemoryStream((enc ?? Encoding.Default).GetBytes(obj));
+		public static Stream Create(bool   obj) => new MemoryStream(new[] { (byte) (obj ? 1 : 0) });
 		public static Stream Create(char   obj) => new MemoryStream(BitConverter.GetBytes(obj));
 		public static Stream Create(double obj) => new MemoryStream(BitConverter.GetBytes(obj));
 		public static Stream Create(float  obj) => new MemoryStream(BitConverter.GetBytes(obj));
@@ -20,15 +20,15 @@ namespace Sinkbox
 		public static Stream Create(uint   obj) => new MemoryStream(BitConverter.GetBytes(obj));
 		public static Stream Create(ulong  obj) => new MemoryStream(BitConverter.GetBytes(obj));
 
-		public static int[] ReadAll(this Stream stream)
+		public static byte[] ReadAll(this Stream stream)
 		{
-			var  working  = new List<int>();
+			var  working  = new List<byte>();
 			int? previous = null;
 			
 			while (stream.CanRead && previous != -1)
 			{
 				if (previous.HasValue)
-					working.Add(previous.Value);
+					working.Add((byte) previous.Value);
 
 				previous = stream.ReadByte();
 			}
@@ -38,7 +38,7 @@ namespace Sinkbox
 
 		public static string ReadAllString(this Stream stream)
 		{
-			var bytes = stream.ReadAll().Select(b => (byte) b).ToArray();
+			var bytes = stream.ReadAll().ToArray();
 			return Encoding.Default.GetString(bytes);
 		}
 	}

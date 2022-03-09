@@ -29,11 +29,13 @@ namespace Sinkbox
 					{
 						"Linux" => OSType.Linux,
 						// if anyone runs this successfully on ios ill change this
-						"Darwin" => OSType.MacOS,
+						"Darwin"  => OSType.MacOS,
 						"OpenBSD" => OSType.OpenBSD,
 						"FreeBSD" => OSType.FreeBSD,
-						"NetBSD" => OSType.NetBSD,
-						_ => uname.EndsWith("bsd") ? OSType.BSD : OSType.Other
+						"NetBSD"  => OSType.NetBSD,
+						_ => uname.EndsWith("bsd", StringComparison.InvariantCultureIgnoreCase)
+								 ? OSType.BSD
+								 : OSType.Unix
 					};
 
 				default:

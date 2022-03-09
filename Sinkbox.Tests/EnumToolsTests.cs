@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
 using static Sinkbox.EnumTools;
 
@@ -16,6 +17,7 @@ namespace Sinkbox.Tests
 		}
 		
 		
+		[SuppressMessage("ReSharper", "InconsistentNaming")]
 		public enum TestEnum
 		{
 			[EnumStr("this is a test string")]
